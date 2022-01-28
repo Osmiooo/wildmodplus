@@ -1,6 +1,6 @@
 {
   "credit": "Model by FrozenBlock Studios",
-  "parent": "minecraft:block/cube_all",
+  "parent": "block/cube_all",
   "textures": {
     "all": "twmplus:block/sculk_jaw_active"
   }
