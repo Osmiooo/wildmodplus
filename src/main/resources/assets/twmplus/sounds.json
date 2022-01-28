@@ -1,0 +1,118 @@
+{
+  "block.sculk.break": {
+    "sounds": [
+      "twm:block/sculk/break1",
+      "twm:block/sculk/break2",
+      "twm:block/sculk/break3",
+      "twm:block/sculk/break4",
+      "twm:block/sculk/break5",
+      "twm:block/sculk/break6",
+      "twm:block/sculk/break7",
+      "twm:block/sculk/break8",
+      "twm:block/sculk/break9",
+      "twm:block/sculk/break10",
+      "twm:block/sculk/break11",
+      "twm:block/sculk/break12",
+      "twm:block/sculk/break13",
+      "twm:block/sculk/break14"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.sculk.fall": {
+    "sounds": [
+      {
+        "name": "minecraft:block/sculk/step1",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step2",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step3",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step4",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step5",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step6",
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.sculk.hit": {
+    "sounds": [
+      {
+        "name": "minecraft:block/sculk/step1",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step2",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step3",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step4",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step5",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step6",
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.sculk.place": {
+    "sounds": [
+      "twm:block/sculk/place1",
+      "twm:block/sculk/place2",
+      "twm:block/sculk/place3",
+      "twm:block/sculk/place4",
+      "twm:block/sculk/place5"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.sculk.step": {
+    "sounds": [
+      {
+        "name": "minecraft:block/sculk/step1",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step2",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step3",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step4",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step5",
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/sculk/step6",
+        "pitch": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  }
+}
