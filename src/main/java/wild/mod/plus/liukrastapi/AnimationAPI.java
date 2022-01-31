@@ -8,7 +8,7 @@ public class AnimationAPI {
 
     Only for FrozenBlockStaff
 
-    VERSION 2.5
+    VERSION 2.5 BETA
      */
 
     public static float easeInSine(float fromTime, float toTime, float size, float time) {
