@@ -1,6 +1,10 @@
 {
   "variants": {
-    "inactive": {"model": "twmplus:block/sculk_jaw"},
-    "active": {"model": "twmplus:block/sculk_jaw_active"}
+    "active=false": {
+      "model": "twmplus:block/sculk_jaw"
+    },
+    "active=true": {
+      "model": "twmplus:block/sculk_jaw_active"
+    }
   }
 }
