@@ -38,7 +38,7 @@ public class SculkJaw extends Block {
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
             if (entity instanceof LivingEntity && !state.get(ACTIVE)) {
                 world.setBlockState(pos, state.with(ACTIVE, true));
-                entity.damage(DamageSource.GENERIC, 1.0f);
+                entity.damage(DamageSource.GENERIC, 5.0f);
                 world.playSound(
                         null,
                         pos,
