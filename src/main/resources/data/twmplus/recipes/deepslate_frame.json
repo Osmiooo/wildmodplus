@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "iDi",
+        "iDi",
+        "iDi"
+    ],
+    "key": {
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "D": {
+            "item": "minecraft:deepslate"
+        }
+    },
+    "result": {
+        "item": "twm:deepslate_frame",
+        "count": 3
+    }
+}
