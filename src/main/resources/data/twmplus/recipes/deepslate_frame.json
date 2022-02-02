@@ -1,15 +1,18 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "iDi",
-        "iDi",
-        "iDi"
+        "131",
+        "232",
+        "131"
     ],
     "key": {
-        "i": {
+        "1": {
             "item": "minecraft:iron_ingot"
         },
-        "D": {
+        "2": {
+            "item": "minecraft:iron_nugget"
+        },
+        "3": {
             "item": "minecraft:deepslate"
         }
     },
