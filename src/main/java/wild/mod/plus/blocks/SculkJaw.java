@@ -25,7 +25,7 @@ public class SculkJaw extends Block {
 
     public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
         super.onStacksDropped(state, world, pos, stack);
-        int i = 1;
+        int i = 20;
         this.dropExperience(world, pos, i);
     }
 
