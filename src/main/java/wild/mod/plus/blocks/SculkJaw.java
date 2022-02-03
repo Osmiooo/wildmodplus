@@ -14,6 +14,8 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class SculkJaw extends Block {
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 
@@ -35,10 +37,16 @@ public class SculkJaw extends Block {
     }
 
     @Override
+    public void scheduledTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
+        serverWorld.setBlockState(blockPos, blockState.with(ACTIVE, false), 3);
+    }
+
+    @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
             if (entity instanceof LivingEntity && !state.get(ACTIVE)) {
                 world.setBlockState(pos, state.with(ACTIVE, true));
                 entity.damage(DamageSource.GENERIC, 5.0f);
+                world.createAndScheduleBlockTick(new BlockPos(pos), state.getBlock(), 60);
                 world.playSound(
                         null,
                         pos,
