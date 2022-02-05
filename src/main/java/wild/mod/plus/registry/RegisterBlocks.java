@@ -11,10 +11,9 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import wild.mod.plus.WildModPlus;
-import wild.mod.plus.blocks.SculkJaw;
+import wild.mod.plus.blocks.SculkJawBlock;
 
 public abstract class RegisterBlocks {
 
@@ -29,7 +28,7 @@ public abstract class RegisterBlocks {
                     frozenblock.wild.mod.registry.RegisterSounds.BLOCK_SCULK_HIT,
                     RegisterSounds.BLOCK_SCULK_FALL));
 
-    public static final Block SCULK_JAW = new SculkJaw(SCULK_PROPERTIES);
+    public static final Block SCULK_JAW = new SculkJawBlock(SCULK_PROPERTIES);
 
     public static void RegisterBlocks() {
 

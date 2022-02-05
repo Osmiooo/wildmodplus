@@ -16,11 +16,11 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class SculkJaw extends Block {
+public class SculkJawBlock extends Block {
     public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 
 
-    public SculkJaw(Settings settings) {
+    public SculkJawBlock(Settings settings) {
         super(settings);
         this.setDefaultState( this.getDefaultState().with(ACTIVE, false));
     }
