@@ -1,6 +1,9 @@
 package wild.mod.plus.blocks;
 
 
+import frozenblock.wild.mod.WildMod;
+import frozenblock.wild.mod.entity.WardenEntity;
+import frozenblock.wild.mod.registry.RegisterEntities;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -11,7 +14,9 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -43,7 +48,8 @@ public class SculkJawBlock extends Block {
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-            if (entity instanceof LivingEntity && !state.get(ACTIVE)) {
+        Identifier WARDEN = new Identifier(WildMod.MOD_ID, "warden");
+        if (entity instanceof LivingEntity && !state.get(ACTIVE) && !Registry.ENTITY_TYPE.getId(entity.getType()).equals(WARDEN)) {
                 world.setBlockState(pos, state.with(ACTIVE, true));
                 entity.damage(DamageSource.GENERIC, 5.0f);
                 world.createAndScheduleBlockTick(new BlockPos(pos), state.getBlock(), 60);
