@@ -22,6 +22,9 @@
   "entrypoints": {
     "main": [
       "wild.mod.plus.WildModPlus"
+    ],
+    "client": [
+      "wild.mod.plus.WildModPlusClient"
     ]
   },
   "mixins": ["twmplus.mixins.json"],
