@@ -1,93 +1,57 @@
 package wild.mod.plus.entity;
 
-import net.minecraft.block.NoteBlock;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.ai.control.MoveControl;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.pathing.PathNodeType;
-import net.minecraft.entity.mob.FlyingEntity;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
-import wild.mod.plus.liukrastapi.AllayTemptGoal;
-import wild.mod.plus.liukrastapi.FlyRandomlyGoal;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.function.Predicate;
-
-public class AllayEntity extends FlyingEntity {
+public class AllayEntity extends AnimalEntity implements Flutterer {
 
 
     public AllayEntity(EntityType<? extends AllayEntity> entityType, World world) {
         super(entityType, world);
-        this.moveControl = new AllayMoveControl(this);
+        this.moveControl = new FlightMoveControl(this, 20, true);
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, -1.0F);
         this.setPathfindingPenalty(PathNodeType.WATER, -1.0F);
         this.setPathfindingPenalty(PathNodeType.WATER_BORDER, 16.0F);
     }
 
-    public static final Predicate<ItemEntity> CAN_TAKE = null;
-
-//    public ActionResult interactMob(PlayerEntity player, Hand hand) {
-//        ItemStack itemStack = player.getStackInHand(hand);
-//        if (itemStack.isItemEqual(Items.COOKIE.getDefaultStack())) {
-//            if (!player.getAbilities().creativeMode) {
-//                itemStack.decrement(1);
-//            }
-//            this.setOwner(player);
-//            this.navigation.stop();
-//            this.setTarget(null);
-//            this.setSitting(true);
-//            this.world.sendEntityStatus(this, (byte) 7);
-//
-//            return ActionResult.SUCCESS;
-//        }
-//        return super.interactMob(player, hand);
-//    }
-
-
-
-
-    private int eatingTime;
+    public float getPathfindingFavor(BlockPos pos, WorldView world) {
+        return world.getBlockState(pos).isAir() ? 10.0F : 0.0F;
+    }
 
     protected void initGoals() {
-
-        this.goalSelector.add(3, new FlyRandomlyGoal(this));
-        this.setCanPickUpLoot(true);
-        List<ItemEntity> list = AllayEntity.this.world.getEntitiesByClass(ItemEntity.class, AllayEntity.this.getBoundingBox().expand(8.0D, 8.0D, 8.0D), AllayEntity.CAN_TAKE);
-        this.goalSelector.add(4, new AllayTemptGoal(this, 0.4D, Ingredient.ofItems(new ItemConvertible[]{Items.COOKIE}), false));
-      //  this.goalSelector.add(4, new TemptGoal(this, 1.0D, Ingredient.ofItems(new ItemConvertible[]{Items.COOKIE}), false));
-
-
+        this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
     }
-
-    public boolean canPickupItem(ItemStack stack) {
-        Item item = stack.getItem();
-        ItemStack itemStack = this.getEquippedStack(EquipmentSlot.MAINHAND);
-        return itemStack.isEmpty() || this.eatingTime > 0 && item.isFood() && !itemStack.getItem().isFood();
-    }
-
-
-
 
     public boolean isOnGround() {
         return this.onGround;
     }
 
-//    @Nullable
-//    @Override
-//    public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-//        return null;
-//    }
+    @Override
+    public boolean isInAir() {
+        return false;
+    }
 
+    @Nullable
+    @Override
+    public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+        return null;
+    }
 
     static class AllayMoveControl extends MoveControl {
         private final AllayEntity allay;
@@ -133,37 +97,3 @@ public class AllayEntity extends FlyingEntity {
         }}
 
 }
-
-
-//        BlockPos blockPos = new BlockPos(10, 10, 10);
-//
-//        Box box = (new Box(blockPos.add(-10, -10, -10), blockPos.add(10, 10, 10)));
-//        List<PlayerEntity> list = world.getNonSpectatingEntities(PlayerEntity.class, box);
-//        Iterator<PlayerEntity> var11 = list.iterator();
-//        PlayerEntity playerEntity;
-//            while (var11.hasNext()) {
-//            playerEntity = var11.next();
-//            if (playerEntity.getBlockPos().isWithinDistance(blockPos, (dist + 1))) {
-//                playerEntity.addStatusEffect(new StatusEffectInstance(RegisterStatusEffects.DARKNESS, 300, 0, true, false, false));
-
-
-
-//    }
-//}}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
