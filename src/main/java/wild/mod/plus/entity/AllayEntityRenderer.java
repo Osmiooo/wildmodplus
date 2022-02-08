@@ -6,6 +6,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import wild.mod.plus.WildModPlus;
 import wild.mod.plus.WildModPlusClient;
 
@@ -15,6 +16,8 @@ public class AllayEntityRenderer extends MobEntityRenderer<AllayEntity, AllayEnt
     public AllayEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new AllayEntityModel(context.getPart(WildModPlusClient.MODEL_ALLAY_LAYER)), 0.5f);
     }
+
+    protected int getBlockLight(AllayEntity entity, BlockPos blockPos) {return 15;}
 
     @Override
     public Identifier getTexture(AllayEntity entity) {
