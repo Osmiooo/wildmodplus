@@ -20,9 +20,12 @@ public abstract class SculkSensorBlockMixin extends Block {
         super(settings);
     }
 
+    public boolean isDeactivated(BlockState state) {
+        return (Boolean) state.get(DEACTIVATED);
+    }
+
     @Inject(method = "appendProperties", at = @At("HEAD"))
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder, CallbackInfo ci) {
-
         builder.add(DEACTIVATED);
     }
 
