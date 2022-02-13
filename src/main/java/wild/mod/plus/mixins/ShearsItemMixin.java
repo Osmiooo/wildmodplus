@@ -50,6 +50,5 @@ public class ShearsItemMixin {
         }
         return super.useOnBlock(context);
     }
-
      */
 }

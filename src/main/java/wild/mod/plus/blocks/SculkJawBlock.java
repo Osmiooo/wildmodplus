@@ -2,8 +2,6 @@ package wild.mod.plus.blocks;
 
 
 import frozenblock.wild.mod.WildMod;
-import frozenblock.wild.mod.entity.WardenEntity;
-import frozenblock.wild.mod.registry.RegisterEntities;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -18,6 +16,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import wild.mod.plus.WildModPlus;
 
 import java.util.Random;
 
@@ -53,6 +52,7 @@ public class SculkJawBlock extends Block {
                 world.setBlockState(pos, state.with(ACTIVE, true));
                 entity.damage(DamageSource.GENERIC, 5.0f);
                 world.createAndScheduleBlockTick(new BlockPos(pos), state.getBlock(), 60);
+                world.emitGameEvent(entity, WildModPlus.JAW_ACTIVATE, pos);
                 world.playSound(
                         null,
                         pos,

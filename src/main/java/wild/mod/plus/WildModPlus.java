@@ -16,6 +16,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.event.GameEvent;
 import wild.mod.plus.entity.AllayEntity;
 import wild.mod.plus.registry.RegisterBlocks;
 import wild.mod.plus.registry.RegisterSounds;
@@ -25,6 +26,8 @@ public class WildModPlus implements ModInitializer {
     public static final String MOD_ID = "twmplus";
 
     public static final BooleanProperty DEACTIVATED = BooleanProperty.of("deactivated");
+
+    public static final GameEvent JAW_ACTIVATE = new GameEvent("jaw_activate", 16);
 
     public static final EntityType<AllayEntity> ALLAY = Registry.register(
             Registry.ENTITY_TYPE,
@@ -37,6 +40,7 @@ public class WildModPlus implements ModInitializer {
     @Override
     public void onInitialize() {
         RegisterBlocks.RegisterBlocks();
+        Registry.register(Registry.GAME_EVENT, new Identifier(WildModPlus.MOD_ID, "jaw_activate"), JAW_ACTIVATE);
         Registry.register(Registry.ITEM, new Identifier(WildModPlus.MOD_ID, "allay_spawn_egg"), ALLAY_SPAWN_EGG);
         RegisterSounds.RegisterSounds();
         FabricDefaultAttributeRegistry.register(ALLAY, AllayEntity.createMobAttributes());
