@@ -1,5 +1,6 @@
 package wild.mod.plus;
 
+import frozenblock.wild.mod.registry.RegisterItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -40,6 +41,7 @@ public class WildModPlus implements ModInitializer {
     @Override
     public void onInitialize() {
         RegisterBlocks.RegisterBlocks();
+        RegisterItems.RegisterItems();
         Registry.register(Registry.GAME_EVENT, new Identifier(WildModPlus.MOD_ID, "jaw_activate"), JAW_ACTIVATE);
         Registry.register(Registry.ITEM, new Identifier(WildModPlus.MOD_ID, "allay_spawn_egg"), ALLAY_SPAWN_EGG);
         RegisterSounds.RegisterSounds();

@@ -1,5 +1,12 @@
 {
   "item.twmplus.allay_spawn_egg": "Allay Spawn Egg",
 
-  "block.twmplus.sculk_jaw": "Sculk Jaw"
+  "block.twmplus.sculk_jaw": "Sculk Jaw",
+  
+  "subtitles.block.sculk_jaw.clamp": "Sculk Jaw clamps",
+  
+  "subtitles.item.goat_horn.use": "Horn blown",
+  
+  "subtitles.entity.goat.horn_break": "Goat's horn breaks off"
+  
 }

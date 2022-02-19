@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import wild.mod.plus.WildModPlus;
+import wild.mod.plus.registry.RegisterSounds;
 
 import java.util.Random;
 
@@ -56,7 +57,7 @@ public class SculkJawBlock extends Block {
                 world.playSound(
                         null,
                         pos,
-                        SoundEvents.ENTITY_EVOKER_FANGS_ATTACK,
+                        RegisterSounds.BLOCK_SCULK_JAW_CLAMP,
                         SoundCategory.BLOCKS,
                         0.5f,
                         world.random.nextFloat() * 0.1F + 0.9F
