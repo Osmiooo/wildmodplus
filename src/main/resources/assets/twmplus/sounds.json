@@ -115,29 +115,12 @@
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
-    "block.sculk_jaw.clamp": {
+  "block.sculk_jaw.clamp": {
     "sounds": [
-      "wildmodplus:block/sculk_jaw/clamp1",
-      "wildmodplus:block/sculk_jaw/clamp2",
-      "wildmodplus:block/sculk_jaw/clamp3"
+      "twmplus:block/sculk_jaw/clamp1",
+      "twmplus:block/sculk_jaw/clamp2",
+      "twmplus:block/sculk_jaw/clamp3"
     ],
     "subtitle": "subtitles.block.sculk_jaw.clamp"
-  },
-    "entity.goat.horn_break": {
-    "sounds": [
-      "wildmodplus:mob/goat/horn_break1",
-	  "wildmodplus:mob/goat/horn_break2",
-	  "wildmodplus:mob/goat/horn_break3",
-	  "wildmodplus:mob/goat/horn_break4"
-    ],
-    "subtitle": "subtitles.entity.goat.horn_break"
-  },
-    "item.goat_horn.use": {
-    "sounds": [
-      "wildmodplus:item/goat_horn/use1",
-      "wildmodplus:item/goat_horn/use2",
-      "wildmodplus:item/goat_horn/use3"
-    ],
-    "subtitle": "subtitles.item.goat_horn.use"
   }
 }

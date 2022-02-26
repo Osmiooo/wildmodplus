@@ -59,7 +59,7 @@ public class SculkJawBlock extends Block {
                         pos,
                         RegisterSounds.BLOCK_SCULK_JAW_CLAMP,
                         SoundCategory.BLOCKS,
-                        0.5f,
+                        1.0f,
                         world.random.nextFloat() * 0.1F + 0.9F
                 );
         }
