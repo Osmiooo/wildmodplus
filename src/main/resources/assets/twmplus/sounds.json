@@ -114,5 +114,13 @@
       }
     ],
     "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.sculk_jaw.clamp": {
+    "sounds": [
+      "twmplus:block/sculk_jaw/clamp1",
+      "twmplus:block/sculk_jaw/clamp2",
+      "twmplus:block/sculk_jaw/clamp3"
+    ],
+    "subtitle": "subtitles.block.sculk_jaw.clamp"
   }
 }
