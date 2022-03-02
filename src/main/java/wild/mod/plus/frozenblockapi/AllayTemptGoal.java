@@ -1,4 +1,4 @@
-package wild.mod.plus.liukrastapi;
+package wild.mod.plus.frozenblockapi;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.TargetPredicate;

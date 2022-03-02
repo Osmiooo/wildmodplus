@@ -43,7 +43,7 @@ public class AllayEntity extends FlyingEntity {
 
     public static final Predicate<ItemEntity> CAN_TAKE = null;
 
-    /*public ActionResult interactMob(PlayerEntity player, Hand hand) {
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (itemStack.isItemEqual(Items.COOKIE.getDefaultStack())) {
             if (!player.getAbilities().creativeMode) {
@@ -56,7 +56,7 @@ public class AllayEntity extends FlyingEntity {
             return ActionResult.SUCCESS;
         }
         return super.interactMob(player, hand);
-    }*/
+    }
 
 
 
@@ -68,7 +68,7 @@ public class AllayEntity extends FlyingEntity {
         this.goalSelector.add(3, new FlyRandomlyGoal(this));
         this.setCanPickUpLoot(true);
         List<ItemEntity> list = AllayEntity.this.world.getEntitiesByClass(ItemEntity.class, AllayEntity.this.getBoundingBox().expand(8.0D, 8.0D, 8.0D), AllayEntity.CAN_TAKE);
-        this.goalSelector.add(4, new wild.mod.plus.liukrastapi.AllayTemptGoal(this, 0.4D, Ingredient.ofItems(new ItemConvertible[]{Items.COOKIE}), false));
+        this.goalSelector.add(4, new wild.mod.plus.frozenblockapi.AllayTemptGoal(this, 0.4D, Ingredient.ofItems(new ItemConvertible[]{Items.COOKIE}), false));
         //this.goalSelector.add(4, new TemptGoal(this, 1.0D, Ingredient.ofItems(new ItemConvertible[]{Items.COOKIE}), false));
 
 
