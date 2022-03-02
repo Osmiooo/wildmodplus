@@ -4,8 +4,9 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.mob.FlyingEntity;
 
-public class AllayEntityModel extends EntityModel<AllayEntity> {
+public class AllayEntityModel<A extends FlyingEntity> extends EntityModel<AllayEntity> {
 	private final ModelPart body;
 	private final ModelPart head;
 	private final ModelPart left_arm;

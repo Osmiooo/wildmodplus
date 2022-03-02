@@ -16,6 +16,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -43,19 +45,27 @@ public class AllayEntity extends FlyingEntity {
 
     public static final Predicate<ItemEntity> CAN_TAKE = null;
 
-    public ActionResult interactMob(PlayerEntity player, Hand hand) {
+    protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (itemStack.isItemEqual(Items.COOKIE.getDefaultStack())) {
+        if (!itemStack.isEmpty() && itemStack.isItemEqual(Items.COOKIE.getDefaultStack())) {
+            if (!this.world.isClient) {
+                this.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 1.0F, 1.0F);
+            }
+
             if (!player.getAbilities().creativeMode) {
                 itemStack.decrement(1);
             }
+
             this.navigation.stop();
+            this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.COOKIE));
+            System.out.println("Allay picked up your cookie!");
             this.setTarget(null);
             this.world.sendEntityStatus(this, (byte) 7);
 
-            return ActionResult.SUCCESS;
+            return ActionResult.success(this.world.isClient);
+        } else {
+            return super.interactMob(player, hand);
         }
-        return super.interactMob(player, hand);
     }
 
 
@@ -68,8 +78,6 @@ public class AllayEntity extends FlyingEntity {
         this.goalSelector.add(3, new FlyRandomlyGoal(this));
         this.setCanPickUpLoot(true);
         List<ItemEntity> list = AllayEntity.this.world.getEntitiesByClass(ItemEntity.class, AllayEntity.this.getBoundingBox().expand(8.0D, 8.0D, 8.0D), AllayEntity.CAN_TAKE);
-        this.goalSelector.add(4, new wild.mod.plus.frozenblockapi.AllayTemptGoal(this, 0.4D, Ingredient.ofItems(new ItemConvertible[]{Items.COOKIE}), false));
-        //this.goalSelector.add(4, new TemptGoal(this, 1.0D, Ingredient.ofItems(new ItemConvertible[]{Items.COOKIE}), false));
 
 
     }

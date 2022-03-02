@@ -5,16 +5,18 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.entity.mob.FlyingEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import wild.mod.plus.WildModPlus;
 import wild.mod.plus.WildModPlusClient;
 
 @Environment(EnvType.CLIENT)
-public class AllayEntityRenderer extends MobEntityRenderer<AllayEntity, AllayEntityModel> {
+public class AllayEntityRenderer extends MobEntityRenderer<AllayEntity, AllayEntityModel<AllayEntity>> {
 
     public AllayEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new AllayEntityModel(context.getPart(WildModPlusClient.MODEL_ALLAY_LAYER)), 0.5f);
+        super(context, new AllayEntityModel<>(context.getPart(WildModPlusClient.MODEL_ALLAY_LAYER)), 0.5f);
+        this.addFeature(new AllayHeldItemFeatureRenderer(this));
     }
 
     protected int getBlockLight(AllayEntity entity, BlockPos blockPos) {return 15;}
