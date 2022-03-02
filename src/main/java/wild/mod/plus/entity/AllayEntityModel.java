@@ -27,8 +27,8 @@ public class AllayEntityModel extends EntityModel<AllayEntity> {
 		modelPartData1.addChild("head", ModelPartBuilder.create().uv(0,0).cuboid(-3.0F, -6.0F, -3.0F, 6.0F, 6.0F, 6.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
 		modelPartData1.addChild("left_arm", ModelPartBuilder.create().uv(8,12).cuboid(-0.5F, -0.5F, -1.0F, 2.0F, 6.0F, 2.0F), ModelTransform.pivot(2.5F,0.5F,0.0F));
 		modelPartData1.addChild("right_arm", ModelPartBuilder.create().uv(0,12).cuboid(-1.5F, -0.5F, -1.0F, 2.0F, 6.0F, 2.0F), ModelTransform.pivot(-2.5F,0.5F,0.0F));
-		modelPartData1.addChild("left_wing", ModelPartBuilder.create().uv(16,16).cuboid(0.0F, -1.0F, 0.0F, 12.0F, 7.0F, 0.01F), ModelTransform.pivot(2.0F,1.0F,2.0F));
-		modelPartData1.addChild("right_wing", ModelPartBuilder.create().uv(21,16).cuboid(-12.0F, -1.0F, 0.0F, 12.0F, 7.0F, 0.01F), ModelTransform.pivot(-2.0F,1.0F,2.0F));
+		modelPartData1.addChild("left_wing", ModelPartBuilder.create().uv(21,16).cuboid(0.0F, -1.0F, 0.0F, 12.0F, 7.0F, 0.01F), ModelTransform.pivot(2.0F,1.0F,2.0F));
+		modelPartData1.addChild("right_wing", ModelPartBuilder.create().uv(16,16).cuboid(-12.0F, -1.0F, 0.0F, 12.0F, 7.0F, 0.01F), ModelTransform.pivot(-2.0F,1.0F,2.0F));
 		return TexturedModelData.of(modelData,64,48);
 	}
 	@Override
