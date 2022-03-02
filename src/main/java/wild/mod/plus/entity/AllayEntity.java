@@ -47,7 +47,7 @@ public class AllayEntity extends FlyingEntity {
 
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (!itemStack.isEmpty() && itemStack.isItemEqual(Items.COOKIE.getDefaultStack())) {
+        if (!itemStack.isEmpty()) {
             if (!this.world.isClient) {
                 this.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 1.0F, 1.0F);
             }
@@ -57,7 +57,7 @@ public class AllayEntity extends FlyingEntity {
             }
 
             this.navigation.stop();
-            this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.COOKIE));
+            this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(itemStack.getItem()));
             System.out.println("Allay picked up your cookie!");
             this.setTarget(null);
             this.world.sendEntityStatus(this, (byte) 7);
