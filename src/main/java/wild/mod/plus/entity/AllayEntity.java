@@ -21,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.util.ActionResult;
@@ -55,7 +56,7 @@ public class AllayEntity extends FlyingEntity {
         if ((!itemStack.isEmpty() && !hasItem())) {
             this.setHasItem(true);
             if (!this.world.isClient) {
-                this.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 1.0F, 1.0F);
+                this.world.playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1F, 1F);
             }
 
             if (!player.getAbilities().creativeMode) {

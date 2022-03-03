@@ -63,14 +63,14 @@ public class AllayEntityModel<A extends FlyingEntity> extends EntityModel<AllayE
 			);
 		} else {
 			this.left_arm.setAngles(
-					(float) Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
-					0,
-					(float) Math.toRadians(Math.cos(time * 2 * multiplier) * 15 - 25)
+					-1.2F,
+					-0.1F,
+					0.0F
 			);
 			this.right_arm.setAngles(
-					(float) Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
-					0,
-					(float) Math.toRadians(Math.cos(time * 2 * multiplier) * -15 + 25)
+					-1.2F,
+					0.1F,
+					0.0F
 			);
 		}
 		this.left_wing.setAngles(

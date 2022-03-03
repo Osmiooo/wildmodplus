@@ -23,10 +23,10 @@ public class AllayHeldItemFeatureRenderer extends FeatureRenderer<AllayEntity, A
         float multiplier = 0.1f;
         ItemStack itemStack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
         float x = 0.0F;
-        float m = -0.35F;
+        float m = -0.25F;
         float n = 0.3F;
-        x -= MathHelper.sin(animationProgress * 1 * multiplier) * 0.1F;
-        n -= MathHelper.sin(animationProgress * 2 * multiplier) * -0.2F;
+        x -= MathHelper.sin(animationProgress * 1 *multiplier) * 0.1F;
+        n -= MathHelper.sin(animationProgress * 2 * multiplier) * -0.2F + 0.1F;
 
 
         matrices.push();
