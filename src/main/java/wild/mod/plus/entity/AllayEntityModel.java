@@ -50,16 +50,29 @@ public class AllayEntityModel<A extends FlyingEntity> extends EntityModel<AllayE
 				(float)(Math.sin(time * 2 * multiplier) * 3 + 3),
 				0
 		);
-		this.left_arm.setAngles(
-				(float)Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
-				0,
-				(float)Math.toRadians(Math.cos(time * 2 * multiplier) * 15 - 25)
-		);
-		this.right_arm.setAngles(
-				(float)Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
-				0,
-				(float)Math.toRadians(Math.cos(time * 2 * multiplier) * -15 + 25)
-		);
+		if(!entity.hasItem()) {
+			this.left_arm.setAngles(
+					(float) Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
+					0,
+					(float) Math.toRadians(Math.cos(time * 2 * multiplier) * 15 - 25)
+			);
+			this.right_arm.setAngles(
+					(float) Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
+					0,
+					(float) Math.toRadians(Math.cos(time * 2 * multiplier) * -15 + 25)
+			);
+		} else {
+			this.left_arm.setAngles(
+					(float) Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
+					0,
+					(float) Math.toRadians(Math.cos(time * 2 * multiplier) * 15 - 25)
+			);
+			this.right_arm.setAngles(
+					(float) Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
+					0,
+					(float) Math.toRadians(Math.cos(time * 2 * multiplier) * -15 + 25)
+			);
+		}
 		this.left_wing.setAngles(
 				(float)Math.toRadians(Math.cos(time * 2 * multiplier) * 25 + 15),
 				(float)Math.toRadians(Math.cos(time * 2 * multiplier) * 55 - 25),
