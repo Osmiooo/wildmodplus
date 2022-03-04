@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "SculkSensorBlockMixin",
-    "PillagerOutpostGeneratorMixin"
+    "PillagerOutpostGeneratorMixin",
+    "ItemMixin"
   ],
   "client": [
   ],
