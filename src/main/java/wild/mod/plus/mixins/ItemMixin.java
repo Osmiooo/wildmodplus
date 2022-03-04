@@ -44,8 +44,8 @@ public class ItemMixin {
             }
             if (world instanceof ServerWorld server) {
                 Block block = blockState.getBlock();
-                if (block instanceof CoatedSculkBlock coated) {
-                    CoatedSculkBlock.grow(server, blockPos);
+                if (block instanceof CoatedSculkBlock) {
+                    CoatedSculkBlock.growCoatedSculk(1,1,blockPos,server);
                 }
             }
             itemStack.decrement(1);
