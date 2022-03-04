@@ -50,7 +50,7 @@ public class AllayEntityModel<A extends FlyingEntity> extends EntityModel<AllayE
 				(float)(Math.sin(time * 2 * multiplier) * 3 + 3),
 				0
 		);
-		if(!entity.hasItem()) {
+		if(!entity.hasItem) {
 			this.left_arm.setAngles(
 					(float) Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
 					0,

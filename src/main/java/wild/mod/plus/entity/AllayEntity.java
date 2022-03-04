@@ -19,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -39,7 +40,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class AllayEntity extends FlyingEntity {
-    public static final TrackedData<Boolean> HAS_ITEM = DataTracker.registerData(DolphinEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public boolean hasItem;
     public static final Predicate<ItemEntity> CAN_TAKE = null;
 
     public AllayEntity(EntityType<? extends AllayEntity> entityType, World world) {
@@ -53,8 +54,8 @@ public class AllayEntity extends FlyingEntity {
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         int s = this.activeItemStack.getCount();
-        if ((!itemStack.isEmpty() && !hasItem())) {
-            this.setHasItem(true);
+        if ((!itemStack.isEmpty() && !hasItem)) {
+            this.hasItem = true;
             if (!this.world.isClient) {
                 this.world.playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1F, 1F);
             }
@@ -71,19 +72,6 @@ public class AllayEntity extends FlyingEntity {
         } else {
             return super.interactMob(player, hand);
         }
-    }
-
-    public boolean hasItem() {
-        return (Boolean)this.dataTracker.get(HAS_ITEM);
-    }
-
-    public void setHasItem(boolean hasItem) {
-        this.dataTracker.set(HAS_ITEM, hasItem);
-    }
-
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(HAS_ITEM, false);
     }
 
     protected void initGoals() {
@@ -107,6 +95,15 @@ public class AllayEntity extends FlyingEntity {
 
     public boolean isOnGround() {
         return this.onGround;
+    }
+
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putBoolean("hasItem", this.hasItem);
+    }
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        this.hasItem = nbt.getBoolean("hasItem");
     }
 
     static class AllayMoveControl extends MoveControl {
