@@ -133,5 +133,17 @@
       "twmplus:block/sculk_jaw/clamp3"
     ],
     "subtitle": "subtitles.block.sculk_jaw.clamp"
+  },
+  "block.sculk_chirper.swell": {
+    "sounds": [
+      "twmplus:block/sculk_chirper/sculk_chirper_swell"
+    ],
+    "subtitle": "subtitles.block.sculk_chirper.swell"
+  },
+  "block.sculk_chirper.exhale": {
+    "sounds": [
+      "twmplus:block/sculk_chirper/sculk_chirper_exhale"
+    ],
+    "subtitle": "subtitles.block.sculk_chirper.exhale"
   }
 }
