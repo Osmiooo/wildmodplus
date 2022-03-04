@@ -18,6 +18,17 @@
     ],
     "subtitle": "subtitles.block.generic.break"
   },
+  "block.sculk_echoer.receive_vibration": {
+    "sounds": [
+      "twmplus:block/sculk_echoer/receive_vibration1",
+      "twmplus:block/sculk_echoer/receive_vibration2",
+      "twmplus:block/sculk_echoer/receive_vibration3",
+      "twmplus:block/sculk_echoer/receive_vibration4",
+      "twmplus:block/sculk_echoer/receive_vibration5",
+      "twmplus:block/sculk_echoer/receive_vibration6"
+    ],
+    "subtitle": "subtitles.block.sculk_echoer.receive_vibration"
+  },
   "block.sculk.fall": {
     "sounds": [
       {
