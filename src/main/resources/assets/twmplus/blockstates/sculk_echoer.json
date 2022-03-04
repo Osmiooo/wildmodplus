@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "twmplus:block/sculk_echoer"
+    }
+  }
+}
