@@ -1,8 +1,7 @@
 {
-	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "twmplus:block/sculk_echoer_top",
-		"1": "twmplus:block/sculk_echoer_bottom",
+		"1": "minecraft:block/sculk_catalyst_bottom",
 		"2": "twmplus:block/sculk_echoer_side",
 		"particle": "twmplus:block/sculk_echoer_side"
 	},
@@ -22,22 +21,21 @@
 		},
 		{
 			"name": "top_slab",
-			"from": [1, 5, 1],
+			"from": [1, 0, 1],
 			"to": [15, 16, 15],
 			"faces": {
-				"north": {"uv": [1, 0, 15, 11], "texture": "#2"},
-				"east": {"uv": [1, 0, 15, 11], "texture": "#2"},
-				"south": {"uv": [1, 0, 15, 11], "texture": "#2"},
-				"west": {"uv": [1, 0, 15, 11], "texture": "#2"}
+				"north": {"uv": [1, 0, 15, 16], "texture": "#2"},
+				"east": {"uv": [1, 0, 15, 16], "texture": "#2"},
+				"south": {"uv": [1, 0, 15, 16], "texture": "#2"},
+				"west": {"uv": [1, 0, 15, 16], "texture": "#2"}
 			}
 		},
 		{
 			"name": "inside",
-			"from": [1, 12, 1],
-			"to": [15, 12, 15],
+			"from": [1, 11, 1],
+			"to": [15, 11, 15],
 			"faces": {
-				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+				"up": {"uv": [1, 1, 15, 15], "texture": "#0"}
 			}
 		},
 		{
@@ -74,35 +72,29 @@
 		}
 	],
 	"display": {
-		"gui": {
-			"rotation": [ 30, 225, 0 ],
-			"translation": [ 0, 0, 0],
-			"scale":[ 0.625, 0.625, 0.625 ]
-		},
-		"ground": {
-			"rotation": [ 0, 0, 0 ],
-			"translation": [ 0, 3, 0],
-			"scale":[ 0.25, 0.25, 0.25 ]
-		},
-		"fixed": {
-			"rotation": [ 0, 0, 0 ],
-			"translation": [ 0, 0, 0],
-			"scale":[ 0.5, 0.5, 0.5 ]
-		},
 		"thirdperson_righthand": {
-			"rotation": [ 75, 45, 0 ],
-			"translation": [ 0, 2.5, 0],
-			"scale": [ 0.375, 0.375, 0.375 ]
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
 		},
 		"firstperson_righthand": {
-			"rotation": [ 0, 45, 0 ],
-			"translation": [ 0, 0, 0 ],
-			"scale": [ 0.40, 0.40, 0.40 ]
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
 		},
 		"firstperson_lefthand": {
-			"rotation": [ 0, 225, 0 ],
-			"translation": [ 0, 0, 0 ],
-			"scale": [ 0.40, 0.40, 0.40 ]
+			"rotation": [0, 225, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
 		}
 	}
 }
