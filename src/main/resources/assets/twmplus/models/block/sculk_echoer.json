@@ -1,7 +1,7 @@
 {
 	"textures": {
 		"0": "twmplus:block/sculk_echoer_top",
-		"1": "block/sculk_catalyst_bottom",
+		"1": "twm:block/sculk_catalyst_bottom",
 		"2": "twmplus:block/sculk_echoer_side",
 		"particle": "twmplus:block/sculk_echoer_side"
 	},
