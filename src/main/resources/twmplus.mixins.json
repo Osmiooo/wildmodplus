@@ -4,7 +4,9 @@
   "package": "wild.mod.plus.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "SculkSensorBlockMixin"
+    "SculkSensorBlockMixin",
+    "PillagerOutpostGeneratorMixin",
+    "ItemMixin"
   ],
   "client": [
   ],

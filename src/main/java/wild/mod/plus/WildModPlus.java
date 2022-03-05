@@ -30,10 +30,12 @@ public class WildModPlus implements ModInitializer {
 
     public static final GameEvent JAW_ACTIVATE = new GameEvent("jaw_activate", 16);
 
+    public static final GameEvent SCULK_ECHOER_ECHO = new GameEvent("sculk_echoer_echo", 16);
+
     public static final EntityType<AllayEntity> ALLAY = Registry.register(
             Registry.ENTITY_TYPE,
             new Identifier(WildModPlus.MOD_ID, "allay"),
-            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AllayEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.0f)).build()
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AllayEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.8f)).build()
     );
 
     public static final Item ALLAY_SPAWN_EGG = new SpawnEggItem(WildModPlus.ALLAY, Integer.parseInt("39F3FF", 16), Integer.parseInt("F0FFFF", 16), new FabricItemSettings().group(ItemGroup.MISC));
@@ -42,6 +44,7 @@ public class WildModPlus implements ModInitializer {
     public void onInitialize() {
         RegisterBlocks.RegisterBlocks();
         Registry.register(Registry.GAME_EVENT, new Identifier(WildModPlus.MOD_ID, "jaw_activate"), JAW_ACTIVATE);
+        Registry.register(Registry.GAME_EVENT, new Identifier(WildModPlus.MOD_ID, "sculk_echoer_echo"), SCULK_ECHOER_ECHO);
         Registry.register(Registry.ITEM, new Identifier(WildModPlus.MOD_ID, "allay_spawn_egg"), ALLAY_SPAWN_EGG);
         RegisterSounds.RegisterSounds();
         FabricDefaultAttributeRegistry.register(ALLAY, AllayEntity.createMobAttributes());

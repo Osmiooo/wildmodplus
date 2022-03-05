@@ -1,4 +1,5 @@
 {
+	"parent": "block/cube_all",
 	"textures": {
 		"0": "twmplus:block/coated_sculk_side",
 		"1": "twmplus:block/coated_sculk_top",

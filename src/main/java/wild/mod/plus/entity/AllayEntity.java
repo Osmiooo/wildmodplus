@@ -1,21 +1,28 @@
 package wild.mod.plus.entity;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.pathing.PathNodeType;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.FlyingEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.util.ActionResult;
@@ -33,7 +40,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class AllayEntity extends FlyingEntity {
-
+    public boolean hasItem;
+    public static final Predicate<ItemEntity> CAN_TAKE = null;
 
     public AllayEntity(EntityType<? extends AllayEntity> entityType, World world) {
         super(entityType, world);
@@ -43,13 +51,13 @@ public class AllayEntity extends FlyingEntity {
         this.setPathfindingPenalty(PathNodeType.WATER_BORDER, 16.0F);
     }
 
-    public static final Predicate<ItemEntity> CAN_TAKE = null;
-
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (!itemStack.isEmpty()) {
+        int s = this.activeItemStack.getCount();
+        if ((!itemStack.isEmpty() && !hasItem)) {
+            this.hasItem = true;
             if (!this.world.isClient) {
-                this.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 1.0F, 1.0F);
+                this.world.playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1F, 1F);
             }
 
             if (!player.getAbilities().creativeMode) {
@@ -58,8 +66,6 @@ public class AllayEntity extends FlyingEntity {
 
             this.navigation.stop();
             this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(itemStack.getItem()));
-            System.out.println("Allay picked up your cookie!");
-            this.setTarget(null);
             this.world.sendEntityStatus(this, (byte) 7);
 
             return ActionResult.success(this.world.isClient);
@@ -67,11 +73,6 @@ public class AllayEntity extends FlyingEntity {
             return super.interactMob(player, hand);
         }
     }
-
-
-
-
-    private int eatingTime;
 
     protected void initGoals() {
         this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
@@ -85,7 +86,7 @@ public class AllayEntity extends FlyingEntity {
     public boolean canPickupItem(ItemStack stack) {
         Item item = stack.getItem();
         ItemStack itemStack = this.getEquippedStack(EquipmentSlot.MAINHAND);
-        return itemStack.isEmpty() || this.eatingTime > 0 && item.isFood() && !itemStack.getItem().isFood();
+        return itemStack.isEmpty() && item.isFood() && !itemStack.getItem().isFood();
     }
 
     public float getPathfindingFavor(BlockPos pos, WorldView world) {
@@ -94,6 +95,15 @@ public class AllayEntity extends FlyingEntity {
 
     public boolean isOnGround() {
         return this.onGround;
+    }
+
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putBoolean("hasItem", this.hasItem);
+    }
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        this.hasItem = nbt.getBoolean("hasItem");
     }
 
     static class AllayMoveControl extends MoveControl {
@@ -125,6 +135,7 @@ public class AllayEntity extends FlyingEntity {
             }
 
         }
+
 
         private boolean willCollide(Vec3d direction, int steps) {
             Box box = this.allay.getBoundingBox();

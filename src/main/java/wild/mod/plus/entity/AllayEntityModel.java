@@ -28,8 +28,8 @@ public class AllayEntityModel<A extends FlyingEntity> extends EntityModel<AllayE
 		modelPartData1.addChild("head", ModelPartBuilder.create().uv(0,0).cuboid(-3.0F, -6.0F, -3.0F, 6.0F, 6.0F, 6.0F), ModelTransform.pivot(0.0F,0.0F,0.0F));
 		modelPartData1.addChild("left_arm", ModelPartBuilder.create().uv(8,12).cuboid(-0.5F, -0.5F, -1.0F, 2.0F, 6.0F, 2.0F), ModelTransform.pivot(2.5F,0.5F,0.0F));
 		modelPartData1.addChild("right_arm", ModelPartBuilder.create().uv(0,12).cuboid(-1.5F, -0.5F, -1.0F, 2.0F, 6.0F, 2.0F), ModelTransform.pivot(-2.5F,0.5F,0.0F));
-		modelPartData1.addChild("left_wing", ModelPartBuilder.create().uv(16,16).cuboid(0.0F, -1.0F, 0.0F, 12.0F, 7.0F, 0.005F), ModelTransform.pivot(2.0F,1.0F,2.0F));
-		modelPartData1.addChild("right_wing", ModelPartBuilder.create().uv(21,16).cuboid(-12.0F, -1.0F, 0.0F, 12.0F, 7.0F, 0.005F), ModelTransform.pivot(-2.0F,1.0F,2.0F));
+		modelPartData1.addChild("left_wing", ModelPartBuilder.create().uv(16,16).cuboid(0.0F, -1.0F, 0.0F, 12.0F, 4.0F, 0.005F), ModelTransform.pivot(2.0F,1.0F,2.0F));
+		modelPartData1.addChild("right_wing", ModelPartBuilder.create().uv(16,12).cuboid(-12.0F, -1.0F, 0.0F, 12.0F, 4.0F, 0.005F), ModelTransform.pivot(-2.0F,1.0F,2.0F));
 		return TexturedModelData.of(modelData,64,48);
 	}
 	@Override
@@ -50,16 +50,29 @@ public class AllayEntityModel<A extends FlyingEntity> extends EntityModel<AllayE
 				(float)(Math.sin(time * 2 * multiplier) * 3 + 3),
 				0
 		);
-		this.left_arm.setAngles(
-				(float)Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
-				0,
-				(float)Math.toRadians(Math.cos(time * 2 * multiplier) * 15 - 25)
-		);
-		this.right_arm.setAngles(
-				(float)Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
-				0,
-				(float)Math.toRadians(Math.cos(time * 2 * multiplier) * -15 + 25)
-		);
+		if(!entity.hasItem) {
+			this.left_arm.setAngles(
+					(float) Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
+					0,
+					(float) Math.toRadians(Math.cos(time * 2 * multiplier) * 15 - 25)
+			);
+			this.right_arm.setAngles(
+					(float) Math.toRadians(Math.sin(time * 2 * multiplier) * -15 - 5),
+					0,
+					(float) Math.toRadians(Math.cos(time * 2 * multiplier) * -15 + 25)
+			);
+		} else {
+			this.left_arm.setAngles(
+					-1.2F,
+					-0.1F,
+					0.0F
+			);
+			this.right_arm.setAngles(
+					-1.2F,
+					0.1F,
+					0.0F
+			);
+		}
 		this.left_wing.setAngles(
 				(float)Math.toRadians(Math.cos(time * 2 * multiplier) * 25 + 15),
 				(float)Math.toRadians(Math.cos(time * 2 * multiplier) * 55 - 25),
