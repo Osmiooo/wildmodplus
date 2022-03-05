@@ -6,7 +6,8 @@
   "mixins": [
     "SculkSensorBlockMixin",
     "PillagerOutpostGeneratorMixin",
-    "ItemMixin"
+    "ItemMixin",
+    "VexEntityMixin"
   ],
   "client": [
   ],
