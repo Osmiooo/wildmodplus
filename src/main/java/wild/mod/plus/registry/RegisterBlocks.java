@@ -15,6 +15,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import wild.mod.plus.WildModPlus;
 import wild.mod.plus.blocks.CoatedSculkBlock;
+import wild.mod.plus.blocks.SculkChirperBlock;
 import wild.mod.plus.blocks.SculkEchoerBlock;
 import wild.mod.plus.blocks.SculkJawBlock;
 
@@ -35,6 +36,7 @@ public abstract class RegisterBlocks {
     public static final Block SCULK_ECHOER = SculkEchoerBlock.SCULK_ECHOER_BLOCK;
     public static final Block SCULK_JAW = new SculkJawBlock(SCULK_PROPERTIES);
     public static final Block COATED_SCULK = new CoatedSculkBlock(SCULK_PROPERTIES);
+    public static final Block SCULK_CHIRPER = new SculkChirperBlock(SCULK_PROPERTIES);
 
     public static void RegisterBlocks() {
         Registry.register(Registry.BLOCK, new Identifier(WildModPlus.MOD_ID, "sculk_echoer"), SCULK_ECHOER);
@@ -45,5 +47,8 @@ public abstract class RegisterBlocks {
 
         Registry.register(Registry.BLOCK, new Identifier(WildModPlus.MOD_ID, "coated_sculk"), COATED_SCULK);
         Registry.register(Registry.ITEM, new Identifier(WildModPlus.MOD_ID, "coated_sculk"), new BlockItem(COATED_SCULK, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+
+        Registry.register(Registry.BLOCK, new Identifier(WildModPlus.MOD_ID, "sculk_chirper"), SCULK_CHIRPER);
+        Registry.register(Registry.ITEM, new Identifier(WildModPlus.MOD_ID, "sculk_chirper"), new BlockItem(SCULK_CHIRPER, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
     }
 }

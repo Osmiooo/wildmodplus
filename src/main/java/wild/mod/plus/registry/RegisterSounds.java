@@ -15,6 +15,7 @@ public class RegisterSounds {
     public static SoundEvent BLOCK_SCULK_PLACE = new SoundEvent(new Identifier(WildMod.MOD_ID, "block.sculk.place"));
     public static SoundEvent BLOCK_SCULK_JAW_CLAMP = new SoundEvent(new Identifier(WildModPlus.MOD_ID, "block.sculk_jaw.clamp"));
     public static SoundEvent BLOCK_SCULK_ECHOER_RECEIVE_VIBRATION = new SoundEvent(new Identifier(WildModPlus.MOD_ID, "block.sculk_echoer.receive_vibration"));
+    public static SoundEvent BLOCK_SCULK_CHIRPER_SWELL = new SoundEvent(new Identifier(WildModPlus.MOD_ID, "block.sculk_chirper.swell"));
 
 
 
@@ -27,6 +28,7 @@ public class RegisterSounds {
         BLOCK_SCULK_PLACE = register(BLOCK_SCULK_PLACE.getId());
         BLOCK_SCULK_JAW_CLAMP = register(BLOCK_SCULK_JAW_CLAMP.getId());
         BLOCK_SCULK_ECHOER_RECEIVE_VIBRATION = register(BLOCK_SCULK_ECHOER_RECEIVE_VIBRATION.getId());
+        BLOCK_SCULK_CHIRPER_SWELL = register(BLOCK_SCULK_CHIRPER_SWELL.getId());
 
     }
 
