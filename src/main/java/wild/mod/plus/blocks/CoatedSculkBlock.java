@@ -29,9 +29,6 @@ public class CoatedSculkBlock extends Block {
     }
 
     public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-        super.onStacksDropped(state, world, pos, stack);
-        int i = 1;
-        this.dropExperience(world, pos, i);
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
