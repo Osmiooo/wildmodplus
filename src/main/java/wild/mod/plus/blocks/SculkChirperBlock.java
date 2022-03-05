@@ -3,6 +3,7 @@ package wild.mod.plus.blocks;
 
 import frozenblock.wild.mod.WildMod;
 import frozenblock.wild.mod.entity.WardenEntity;
+import frozenblock.wild.mod.registry.RegisterEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -64,9 +65,9 @@ public class SculkChirperBlock extends Block {
             double distance=9;
             while(var11.hasNext()) {
                 Entity = var11.next();
-                if (closest==null) {closest=Entity;}
+                if (closest==null && Entity.getType()!= RegisterEntities.WARDEN) {closest=Entity;}
                 double distCompare = Entity.squaredDistanceTo(blockPos.getX()+0.5, blockPos.getY()+0.5, blockPos.getZ()+0.5);
-                if (distCompare<distance) {distance=distCompare; closest=Entity;}
+                if (distCompare<distance && Entity.getType()!= RegisterEntities.WARDEN) {distance=distCompare; closest=Entity;}
             }
             if (closest!=null) {serverWorld.emitGameEvent(closest, GameEvent.STEP, blockPos);
                 float pitch = (float) (0.5+((9-distance)/3));
