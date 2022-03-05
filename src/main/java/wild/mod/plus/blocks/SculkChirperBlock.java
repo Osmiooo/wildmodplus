@@ -68,9 +68,9 @@ public class SculkChirperBlock extends Block {
                 double distCompare = Entity.squaredDistanceTo(blockPos.getX()+0.5, blockPos.getY()+0.5, blockPos.getZ()+0.5);
                 if (distCompare<distance) {distance=distCompare; closest=Entity;}
             }
-            if (closest!=null) {serverWorld.emitGameEvent(closest, GameEvent.STEP, closest);}
-            float pitch = (float) (0.5+((9-distance)/3));
-            serverWorld.playSound(null, blockPos.getX(),blockPos.getY(),blockPos.getZ(), RegisterSounds.BLOCK_SCULK_CHIRPER_SWELL, SoundCategory.BLOCKS, 1f, pitch);
+            if (closest!=null) {serverWorld.emitGameEvent(closest, GameEvent.STEP, blockPos);
+                float pitch = (float) (0.5+((9-distance)/3));
+                serverWorld.playSound(null, blockPos.getX(),blockPos.getY(),blockPos.getZ(), RegisterSounds.BLOCK_SCULK_CHIRPER_SWELL, SoundCategory.BLOCKS, 1f, pitch);}
         }
         serverWorld.createAndScheduleBlockTick(blockPos, blockState.getBlock(), 1);
     }
