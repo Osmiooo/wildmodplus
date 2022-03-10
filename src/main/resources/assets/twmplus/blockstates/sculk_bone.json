@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "twmplus:block/sculk_bone",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "twmplus:block/sculk_bone"
+    },
+    "axis=z": {
+      "model": "twmplus:block/sculk_bone",
+      "x": 90
+    }
+  }
+}
