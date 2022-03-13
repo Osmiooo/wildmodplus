@@ -1,6 +1,5 @@
 package wild.mod.plus;
 
-import frozenblock.wild.mod.registry.RegisterItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -35,7 +34,7 @@ public class WildModPlus implements ModInitializer {
     public static final EntityType<AllayEntity> ALLAY = Registry.register(
             Registry.ENTITY_TYPE,
             new Identifier(WildModPlus.MOD_ID, "allay"),
-            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AllayEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.8f)).build()
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AllayEntity::new).dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build()
     );
 
     public static final Item ALLAY_SPAWN_EGG = new SpawnEggItem(WildModPlus.ALLAY, Integer.parseInt("39F3FF", 16), Integer.parseInt("F0FFFF", 16), new FabricItemSettings().group(ItemGroup.MISC));

@@ -10,7 +10,6 @@ import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class AllayHeldItemFeatureRenderer extends FeatureRenderer<AllayEntity, AllayEntityModel<AllayEntity>> {
@@ -20,17 +19,16 @@ public class AllayHeldItemFeatureRenderer extends FeatureRenderer<AllayEntity, A
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AllayEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        float multiplier = 0.1f;
+        float multiplier = 0.18f;
         ItemStack itemStack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
         float x = 0.0F;
+        float n = 0F;
         float m = -0.25F;
-        float n = 0.3F;
-        x -= MathHelper.sin(animationProgress * 1 *multiplier) * 0.1F;
-        n -= MathHelper.sin(animationProgress * 2 * multiplier) * -0.2F + 0.1F;
 
+        n -= (float) (Math.cos(animationProgress * multiplier) * 0.05 - 0.05) - 1.5F;
 
         matrices.push();
-        matrices.translate((double)x, (double)n, (double)m);
+        matrices.translate(x, n, m);
         MinecraftClient.getInstance().getHeldItemRenderer().renderItem(entity, itemStack, ModelTransformation.Mode.GROUND, false, matrices, vertexConsumers, light);
         matrices.pop();
     }
