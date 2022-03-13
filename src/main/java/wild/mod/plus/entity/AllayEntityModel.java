@@ -43,7 +43,15 @@ public class AllayEntityModel<A extends FlyingEntity> extends EntityModel<AllayE
 
 		float multiplier = 0.18f;
 
-		this.root.yaw = netHeadYaw * 0.017453292F;
+		this.root.yaw = netHeadYaw * 0.07453292F;
+
+		if (entity.hasItem) { //Item Holding
+
+			this.left_arm.pitch = (float) Math.toRadians(-67.5);
+
+			this.right_arm.pitch = (float) Math.toRadians(-67.5);
+
+		}
 
 		if (entity.speed == 0) {//Idle Animation
 
@@ -61,21 +69,12 @@ public class AllayEntityModel<A extends FlyingEntity> extends EntityModel<AllayE
 			this.right_wing.yaw = (float) Math.toRadians(Math.cos(time * multiplier * 2) * 30.4586 - 33.75);
 			this.right_wing.roll = (float) Math.toRadians(Math.cos(time * multiplier * 2) * -22.0241);
 
-			if (entity.hasItem) {
+			this.left_arm.yaw = (float) Math.toRadians(-15);
+			this.left_arm.roll = (float) Math.toRadians(Math.sin(time * multiplier) * -15 - 30);
 
-				this.left_arm.pitch = (float) Math.toRadians(-67.5);
-				this.left_arm.yaw = 0;
+			this.right_arm.yaw = (float) Math.toRadians(15);
+			this.right_arm.roll = (float) Math.toRadians(Math.sin(time * multiplier) * 15 + 30);
 
-				this.right_arm.pitch = (float) Math.toRadians(-67.5);
-				this.right_arm.yaw = 0;
-
-			} else {
-				this.left_arm.yaw = (float) Math.toRadians(-15);
-				this.left_arm.roll = (float) Math.toRadians(Math.sin(time * multiplier) * -15 - 30);
-
-				this.right_arm.yaw = (float) Math.toRadians(15);
-				this.right_arm.roll = (float) Math.toRadians(Math.sin(time * multiplier) * 15 + 30);
-				}
 			} else { //"Fly" Animation
 
 			this.head.pitch = (float) Math.toRadians(Math.cos(time * multiplier * 2) * 2.5);
@@ -85,20 +84,12 @@ public class AllayEntityModel<A extends FlyingEntity> extends EntityModel<AllayE
 			this.body.pivotZ = 1;
 			this.body.pitch = (float) Math.toRadians(Math.cos(time * multiplier * 2) * -5 + 45);
 
-			if (entity.hasItem) {
+			this.left_arm.yaw = (float) Math.toRadians(-22.5);
+			this.left_arm.roll = (float) Math.toRadians(Math.cos(time * multiplier * 2) * -5 - 15);
 
-				this.left_arm.pitch = -(float) Math.toRadians(67.5);
-				this.left_arm.yaw = 0;
+			this.right_arm.yaw = (float) Math.toRadians(22.5);
+			this.right_arm.roll = (float) Math.toRadians(Math.cos(time * multiplier * 2) * 5 + 15);
 
-				this.right_arm.pitch = -(float) Math.toRadians(67.5);
-				this.right_arm.yaw = 0;
-			} else {
-				this.left_arm.yaw = (float) Math.toRadians(-22.5);
-				this.left_arm.roll = (float) Math.toRadians(Math.cos(time * multiplier * 2) * -5 - 15);
-
-				this.right_arm.yaw = (float) Math.toRadians(22.5);
-				this.right_arm.roll = (float) Math.toRadians(Math.cos(time * multiplier * 2) * 5 + 15);
-			}
 			this.right_wing.pitch = (float) Math.toRadians(Math.cos(time * multiplier * 4) * 15.4806);
 			this.right_wing.yaw =  (float) Math.toRadians(Math.cos(time * multiplier * 4) * 32.9972 - 45.5);
 			this.right_wing.roll = (float) Math.toRadians(Math.cos(time * multiplier * 4) * -22.0241);
