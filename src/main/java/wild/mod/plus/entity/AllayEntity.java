@@ -41,7 +41,7 @@ public class AllayEntity extends FlyingEntity {
     @Override
     public void onDeath(DamageSource source) {
         super.onDeath(source);
-        this.dropInventory();
+        this.dropStack(this.getOffHandStack());
     }
 
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
@@ -65,8 +65,8 @@ public class AllayEntity extends FlyingEntity {
 
     public boolean canPickupItem(ItemStack stack) {
         Item item = stack.getItem();
-        ItemStack itemStack = this.getEquippedStack(EquipmentSlot.MAINHAND);
-        return itemStack.isEmpty() && item.isFood() && !itemStack.getItem().isFood();
+        ItemStack itemStack = this.getEquippedStack(EquipmentSlot.OFFHAND);
+        return itemStack.isEmpty() || (itemStack.getMaxCount()>itemStack.getCount() && item==itemStack.getItem());
     }
 
     public float getPathfindingFavor(BlockPos pos, WorldView world) {
@@ -92,12 +92,12 @@ public class AllayEntity extends FlyingEntity {
 
     @Override
     public void tickMovement() {
+        super.tickMovement();
         if (ignoranceTime>0) {--ignoranceTime;}
         //TODO: FIGURE OUT WHY ALLAY WON'T DROP THESE ITEMS
         if (getMainHandStack().getItem()!=getOffHandStack().getItem()) {
             dropStack(getOffHandStack().split(1));
         }
-        super.tickMovement();
     }
 
     static class AllayMoveControl extends MoveControl {

@@ -15,6 +15,11 @@ public class AllayTrackItemGoal extends Goal {
     public AllayTrackItemGoal(AllayEntity entity) {this.entity = entity;}
 
     @Override
+    public boolean shouldRunEveryTick() {
+        return true;
+    }
+
+    @Override
     public boolean canStart() {
         double distance = 999;
         ItemEntity closestItem = null;
