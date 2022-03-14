@@ -51,7 +51,7 @@ public class AllayTrackItemGoal extends Goal {
             if (targeted instanceof ItemEntity) {
                 entity.getNavigation().startMovingTo(targeted, entity.speed);
                 this.entity.getMoveControl().moveTo(targeted.getX(), targeted.getY()+0.5D, targeted.getZ(), 0.3);
-                entity.ignoranceTime = 120;
+                entity.ignoranceTime = 40;
                 entity.getLookControl().lookAt(targeted);
             }
         }
