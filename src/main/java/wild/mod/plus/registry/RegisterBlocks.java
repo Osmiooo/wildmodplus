@@ -1,6 +1,5 @@
 package wild.mod.plus.registry;
 
-import frozenblock.wild.mod.WildMod;
 import frozenblock.wild.mod.registry.RegisterSounds;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;

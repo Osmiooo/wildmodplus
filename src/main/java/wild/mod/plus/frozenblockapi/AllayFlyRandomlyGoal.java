@@ -2,7 +2,6 @@ package wild.mod.plus.frozenblockapi;
 
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.mob.MobEntity;
 import wild.mod.plus.entity.AllayEntity;
 
 import java.util.EnumSet;

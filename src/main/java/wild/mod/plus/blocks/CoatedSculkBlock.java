@@ -1,8 +1,6 @@
 package wild.mod.plus.blocks;
 
 
-import frozenblock.wild.mod.WildMod;
-import frozenblock.wild.mod.fromAccurateSculk.SculkGrower;
 import frozenblock.wild.mod.fromAccurateSculk.SculkTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -18,7 +16,6 @@ import java.util.Random;
 
 import static frozenblock.wild.mod.fromAccurateSculk.SculkGrower.*;
 import static java.lang.Math.*;
-import static java.lang.Math.sqrt;
 
 public class CoatedSculkBlock extends Block {
 

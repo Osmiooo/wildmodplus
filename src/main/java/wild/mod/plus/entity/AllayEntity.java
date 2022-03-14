@@ -2,10 +2,10 @@ package wild.mod.plus.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.pathing.PathNodeType;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.FlyingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -22,17 +22,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import wild.mod.plus.frozenblockapi.AllayFlyRandomlyGoal;
+import wild.mod.plus.frozenblockapi.AllayPickUpItemGoal;
 import wild.mod.plus.frozenblockapi.AllayTrackItemGoal;
-
-import java.util.List;
-import java.util.function.Predicate;
 
 public class AllayEntity extends FlyingEntity {
     public boolean hasItem;
-    public static final Predicate<ItemEntity> CAN_TAKE = null;
-    public double lookX;
-    public double lookY;
-    public double lookZ;
+    public int targetEntity;
     public int ignoranceTime;
 
     public AllayEntity(EntityType<? extends AllayEntity> entityType, World world) {
@@ -43,28 +38,29 @@ public class AllayEntity extends FlyingEntity {
         this.setPathfindingPenalty(PathNodeType.WATER_BORDER, 16.0F);
     }
 
+    @Override
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
+        this.dropInventory();
+    }
+
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-        int s = this.activeItemStack.getCount();
-        if ((!itemStack.isEmpty() && !hasItem)) {
-            this.hasItem = true;
-            if (!this.world.isClient) { this.world.playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1F, 1F); }
-            if (!player.getAbilities().creativeMode) { itemStack.decrement(1); }
-            this.navigation.stop();
-            this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(itemStack.getItem()));
-            this.world.sendEntityStatus(this, (byte) 7);
-            return ActionResult.success(this.world.isClient);
-        } else {
-            return super.interactMob(player, hand);
-        }
+        if (!this.world.isClient) { this.world.playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1F, 1F); }
+        this.dropStack(this.getMainHandStack());
+        this.navigation.stop();
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(itemStack.getItem()));
+        this.world.sendEntityStatus(this, (byte) 7);
+        if (!player.getAbilities().creativeMode) { itemStack.decrement(1); }
+        return ActionResult.success(this.world.isClient);
     }
 
     protected void initGoals() {
         this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(3, new AllayFlyRandomlyGoal(this));
         this.goalSelector.add(15, new AllayTrackItemGoal(this));
+        this.goalSelector.add(15, new AllayPickUpItemGoal(this));
         this.setCanPickUpLoot(true);
-        List<ItemEntity> list = AllayEntity.this.world.getEntitiesByClass(ItemEntity.class, AllayEntity.this.getBoundingBox().expand(8.0D, 8.0D, 8.0D), AllayEntity.CAN_TAKE);
     }
 
     public boolean canPickupItem(ItemStack stack) {
@@ -85,17 +81,23 @@ public class AllayEntity extends FlyingEntity {
         super.writeCustomDataToNbt(nbt);
         nbt.putBoolean("hasItem", this.hasItem);
         nbt.putInt("ignoranceTime", this.ignoranceTime);
+        nbt.putInt("targetEntity", this.targetEntity);
     }
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
         this.hasItem = nbt.getBoolean("hasItem");
         this.ignoranceTime = nbt.getInt("ignoranceTime");
+        this.targetEntity = nbt.getInt("targetEntity");
     }
 
     @Override
     public void tickMovement() {
         super.tickMovement();
-        if (this.ignoranceTime>0) {--this.ignoranceTime;}
+        if (ignoranceTime>0) {--ignoranceTime;}
+        //TODO: FIGURE OUT WHY ALLAY WON'T DROP THESE ITEMS
+        if (getMainHandStack().getItem()!=getOffHandStack().getItem()) {
+            dropStack(getOffHandStack().split(1));
+        }
     }
 
     static class AllayMoveControl extends MoveControl {
