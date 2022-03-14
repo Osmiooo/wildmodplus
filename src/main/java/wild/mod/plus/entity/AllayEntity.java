@@ -21,7 +21,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
-import wild.mod.plus.frozenblockapi.FlyRandomlyGoal;
+import wild.mod.plus.frozenblockapi.AllayFlyRandomlyGoal;
+import wild.mod.plus.frozenblockapi.AllayTrackItemGoal;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -32,6 +33,7 @@ public class AllayEntity extends FlyingEntity {
     public double lookX;
     public double lookY;
     public double lookZ;
+    public int ignoranceTime;
 
     public AllayEntity(EntityType<? extends AllayEntity> entityType, World world) {
         super(entityType, world);
@@ -39,13 +41,6 @@ public class AllayEntity extends FlyingEntity {
         this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, -1.0F);
         this.setPathfindingPenalty(PathNodeType.WATER, -1.0F);
         this.setPathfindingPenalty(PathNodeType.WATER_BORDER, 16.0F);
-        this.getLookControl().lookAt(this.lookX, this.lookY, this.lookZ);
-        PlayerEntity player = this.world.getClosestPlayer(this, 48);
-        if (player!=null) {
-            this.lookX=player.getX();
-            this.lookZ=player.getZ();
-            this.lookY=this.getEyeY();
-        }
     }
 
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
@@ -53,18 +48,11 @@ public class AllayEntity extends FlyingEntity {
         int s = this.activeItemStack.getCount();
         if ((!itemStack.isEmpty() && !hasItem)) {
             this.hasItem = true;
-            if (!this.world.isClient) {
-                this.world.playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1F, 1F);
-            }
-
-            if (!player.getAbilities().creativeMode) {
-                itemStack.decrement(1);
-            }
-
+            if (!this.world.isClient) { this.world.playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1F, 1F); }
+            if (!player.getAbilities().creativeMode) { itemStack.decrement(1); }
             this.navigation.stop();
             this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(itemStack.getItem()));
             this.world.sendEntityStatus(this, (byte) 7);
-
             return ActionResult.success(this.world.isClient);
         } else {
             return super.interactMob(player, hand);
@@ -73,11 +61,10 @@ public class AllayEntity extends FlyingEntity {
 
     protected void initGoals() {
         this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.add(3, new FlyRandomlyGoal(this));
+        this.goalSelector.add(3, new AllayFlyRandomlyGoal(this));
+        this.goalSelector.add(15, new AllayTrackItemGoal(this));
         this.setCanPickUpLoot(true);
         List<ItemEntity> list = AllayEntity.this.world.getEntitiesByClass(ItemEntity.class, AllayEntity.this.getBoundingBox().expand(8.0D, 8.0D, 8.0D), AllayEntity.CAN_TAKE);
-
-
     }
 
     public boolean canPickupItem(ItemStack stack) {
@@ -97,10 +84,18 @@ public class AllayEntity extends FlyingEntity {
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putBoolean("hasItem", this.hasItem);
+        nbt.putInt("ignoranceTime", this.ignoranceTime);
     }
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
         this.hasItem = nbt.getBoolean("hasItem");
+        this.ignoranceTime = nbt.getInt("ignoranceTime");
+    }
+
+    @Override
+    public void tickMovement() {
+        super.tickMovement();
+        if (this.ignoranceTime>0) {--this.ignoranceTime;}
     }
 
     static class AllayMoveControl extends MoveControl {
