@@ -92,12 +92,12 @@ public class AllayEntity extends FlyingEntity {
 
     @Override
     public void tickMovement() {
-        super.tickMovement();
         if (ignoranceTime>0) {--ignoranceTime;}
         //TODO: FIGURE OUT WHY ALLAY WON'T DROP THESE ITEMS
         if (getMainHandStack().getItem()!=getOffHandStack().getItem()) {
             dropStack(getOffHandStack().split(1));
         }
+        super.tickMovement();
     }
 
     static class AllayMoveControl extends MoveControl {
