@@ -18,14 +18,14 @@ public class AllayHeldItemFeatureRenderer extends FeatureRenderer<AllayEntity, A
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AllayEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AllayEntity entity, float limbSwing, float limbSwingAmount, float tickDelta, float time, float netHeadYaw, float headPitch) {
         float multiplier = 0.18f;
         ItemStack itemStack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
         float x = 0.0F;
         float n = -0.15F;
         float m = -0.25F;
 
-        n -= (float) (Math.cos(animationProgress * multiplier) * 0.05 - 0.05) - 1.35F;
+        n -= (float) (Math.cos(time * multiplier) * 0.05 - 0.05) - 1.35F;
 
         matrices.push();
         matrices.translate(x, n, m);
