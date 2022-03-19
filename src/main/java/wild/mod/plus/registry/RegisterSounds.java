@@ -16,8 +16,8 @@ public class RegisterSounds {
     public static SoundEvent BLOCK_SCULK_JAW_CLAMP = new SoundEvent(new Identifier(WildModPlus.MOD_ID, "block.sculk_jaw.clamp"));
     public static SoundEvent BLOCK_SCULK_ECHOER_RECEIVE_VIBRATION = new SoundEvent(new Identifier(WildModPlus.MOD_ID, "block.sculk_echoer.receive_vibration"));
     public static SoundEvent BLOCK_SCULK_CHIRPER_SWELL = new SoundEvent(new Identifier(WildModPlus.MOD_ID, "block.sculk_chirper.swell"));
-    public static SoundEvent MUSIC_DISC_BENEATH = new SoundEvent(new Identifier(WildModPlus.MOD_ID, "music_disc_beneath"));
-    public static SoundEvent MUSIC_DISC_GOATHORN_SYMPHONY = new SoundEvent(new Identifier(WildModPlus.MOD_ID, "music_disc_goathorn_symphony"));
+    public static SoundEvent MUSIC_DISC_BENEATH = new SoundEvent(new Identifier(WildModPlus.MOD_ID, "music_disc.beneath"));
+    public static SoundEvent MUSIC_DISC_GOATHORN_SYMPHONY = new SoundEvent(new Identifier(WildModPlus.MOD_ID, "music_disc.goathorn_symphony"));
 
 
 

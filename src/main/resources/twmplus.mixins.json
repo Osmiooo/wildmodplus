@@ -7,7 +7,8 @@
     "SculkSensorBlockMixin",
     "PillagerOutpostGeneratorMixin",
     "ItemMixin",
-    "VexEntityMixin"
+    "VexEntityMixin",
+    "MusicDiscItemInvoker"
   ],
   "client": [
   ],

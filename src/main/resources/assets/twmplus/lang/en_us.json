@@ -1,8 +1,14 @@
 {
   "item.twmplus.allay_spawn_egg": "Allay Spawn Egg",
 
-  "block.twmplus.sculk_jaw": "Sculk Jaw",
+  "item.twmplus.music_disc_beneath": "Music Disc",
+  "item.twmplus.music_disc_beneath.desc": "Krole - Beneath",
 
+  "item.twmplus.music_disc_goathorn_symphony": "Music Disc",
+  "item.twmplus.music_disc_goathorn_symphony.desc": "Xfrtrex - Goat Horn Symphony",
+
+  "block.twmplus.sculk_jaw": "Sculk Jaw",
+  
   "block.twmplus.coated_sculk": "Coated Sculk",
   
   "subtitles.block.sculk_jaw.clamp": "Sculk Jaw clamps",
