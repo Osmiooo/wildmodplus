@@ -19,6 +19,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.event.GameEvent;
 import wild.mod.plus.entity.AllayEntity;
 import wild.mod.plus.registry.RegisterBlocks;
+import wild.mod.plus.registry.RegisterItems;
 import wild.mod.plus.registry.RegisterSounds;
 
 public class WildModPlus implements ModInitializer {
@@ -37,14 +38,12 @@ public class WildModPlus implements ModInitializer {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AllayEntity::new).dimensions(EntityDimensions.fixed(0.8f, 0.8f)).build()
     );
 
-    public static final Item ALLAY_SPAWN_EGG = new SpawnEggItem(WildModPlus.ALLAY, Integer.parseInt("00CDF0", 16), Integer.parseInt("0097DE", 16), new FabricItemSettings().group(ItemGroup.MISC));
-
     @Override
     public void onInitialize() {
         RegisterBlocks.RegisterBlocks();
         Registry.register(Registry.GAME_EVENT, new Identifier(WildModPlus.MOD_ID, "jaw_activate"), JAW_ACTIVATE);
         Registry.register(Registry.GAME_EVENT, new Identifier(WildModPlus.MOD_ID, "sculk_echoer_echo"), SCULK_ECHOER_ECHO);
-        Registry.register(Registry.ITEM, new Identifier(WildModPlus.MOD_ID, "allay_spawn_egg"), ALLAY_SPAWN_EGG);
+        RegisterItems.RegisterItems();
         RegisterSounds.RegisterSounds();
         FabricDefaultAttributeRegistry.register(ALLAY, AllayEntity.createMobAttributes());
         BiomeModifications.addSpawn(BiomeSelectors.categories(Biome.Category.FOREST), SpawnGroup.CREATURE, ALLAY, 15,1, 1);

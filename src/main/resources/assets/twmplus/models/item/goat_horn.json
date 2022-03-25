@@ -1,7 +1,7 @@
 {
 	"parent": "minecraft:item/handheld",
 	"textures": {
-		"layer0": "twm:item/goat_horn"
+		"layer0": "twmplus:item/goat_horn"
 	},
 	"display": {
 		"thirdperson_righthand": {

@@ -145,5 +145,15 @@
       "twmplus:block/sculk_chirper/sculk_chirper_exhale"
     ],
     "subtitle": "subtitles.block.sculk_chirper.exhale"
+  },
+  "music_disc.beneath": {
+    "sounds": [
+     "twmplus:records/beneath"
+    ]
+  },
+  "music_disc.goathorn_symphony": {
+    "sounds": [
+      "twmplus:records/goathorn_symphony"
+    ]
   }
 }
